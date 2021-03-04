@@ -1,6 +1,6 @@
 # About
 
-This is a wiki.
+This is 
 
 #about #default
 

@@ -137,7 +137,7 @@ app.get('/api/tags/:tag', async (req, res) => {
     fileNames.forEach((file) => {
       const fileNameOnly = file.split('.').slice(0, 1).join('');
       const fileContents = fs.readFileSync(`${DATA_DIR}/${file}`);
-      if (fileContents.includes(tag)) {
+      if (fileContents.includes(`#${tag}`)) {
         fileNameWithTag.push(fileNameOnly);
       }
     });
