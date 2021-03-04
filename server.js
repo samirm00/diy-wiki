@@ -18,7 +18,7 @@ const bodyParser = require('body-parser');
 const logger = require('./middleware/logger');
 
 // declare local constants and helper functions
-
+const PORT = process.env.PORT || 4600;
 const DATA_DIR = 'data';
 const TAG_RE = /#\w+/g;
 const slugToPath = (slug) => {
@@ -154,5 +154,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Wiki app is serving at http://localhost:${port}`));
+app.listen(PORT, (err) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(`Wiki app is serving at http://localhost:${PORT}`);
+});
