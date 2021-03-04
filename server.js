@@ -75,9 +75,8 @@ app.post('/api/page/:slug', async (req, res) => {
 //  success response: {status:'ok', pages: ['fileName', 'otherFileName']}
 //  failure response: no failure response
 app.get('/api/pages/all', async (req, res) => {
-  const fileNames = await readDir(DATA_DIR);
-
   try {
+    const fileNames = await readDir(DATA_DIR);
     const arrayOfFileNames = [];
     fileNames.forEach((file) => {
       const onlyFileName = file.split('.').splice(0, 1).join('');
