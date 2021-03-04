@@ -1,6 +1,6 @@
 # diy-wiki
 
-> A simple server allows the user get a pge , create a page , get all pages , get all tag names and get all file names contains tag names
+> A simple server allows the user get a page , create a page , get all pages , get all tag names and get all file names contains tag names
 
 ---
 
@@ -14,14 +14,14 @@
 >   Data are collection of arrays
 
 ---
-
+<!--
 ## User Story Dependencies
 
 ![Story Dependency Diagram](img/userStories.png)
 
 ---
 
-<!--## WIREFRAME
+## WIREFRAME
 
 ![wireframe]()
 -->
