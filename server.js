@@ -96,7 +96,32 @@ app.get('/api/pages/all', async (req, res) => {
 // hint: use the TAG_RE regular expression to search the contents of each file
 //  success response: {status:'ok', tags: ['tagName', 'otherTagName']}
 //  failure response: no failure response
-app.get('/api/tags/all', async (req, res) => {});
+app.get('/api/tags/all', async (req, res) => {
+  try {
+    const fileNames = await readDir(DATA_DIR);
+    // read each file in the array of file names
+    const arrayOfTagNames = [];
+    fileNames.forEach((file) => {
+      const fileContents = fs.readFileSync(`${DATA_DIR}/${file}`, 'utf-8');
+      let match;
+      if (fileContents.match(TAG_RE)) {
+        match = fileContents.match(TAG_RE);
+        for (let i = 0; i < match.length; i++) {
+          let newName = match[i].replace('#', '');
+          if (!arrayOfTagNames.includes(newName)) {
+            arrayOfTagNames.push(newName);
+          }
+        }
+      }
+    });
+
+    // find tag names in all files
+
+    res.json({ status: 'ok', tags: arrayOfTagNames });
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 // GET: '/api/tags/:tag'
 // searches through the contents of each file looking for the :tag
