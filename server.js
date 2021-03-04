@@ -74,7 +74,21 @@ app.post('/api/page/:slug', async (req, res) => {
 // file names do not have .md, just the name!
 //  success response: {status:'ok', pages: ['fileName', 'otherFileName']}
 //  failure response: no failure response
-app.get('/api/pages/all', async (req, res) => {});
+app.get('/api/pages/all', async (req, res) => {
+  const fileNames = await readDir(DATA_DIR);
+
+  try {
+    const arrayOfFileNames = [];
+    fileNames.forEach((file) => {
+      const onlyFileName = file.split('.').splice(0, 1).join('');
+      arrayOfFileNames.push(onlyFileName);
+    });
+
+    res.json({ status: 'ok', pages: arrayOfFileNames });
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 // GET: '/api/tags/all'
 // sends an array of all tag names in all files, without duplicates!
