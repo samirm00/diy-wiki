@@ -60,8 +60,13 @@ app.get('/api/page/:slug', async (req, res) => {
 //  failure response: {status: 'error', message: 'Could not write page.'}
 app.post('/api/page/:slug', async (req, res) => {
   const filename = slugToPath(req.params.slug);
+  const fileText = req.body.body;
   try {
-  } catch (e) {}
+    writeFile(filename, fileText);
+    res.json({ status: 'ok' });
+  } catch (e) {
+    res.json({ status: 'error', message: 'Could not write page.' });
+  }
 });
 
 // GET: '/api/pages/all'
