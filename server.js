@@ -18,7 +18,7 @@ const bodyParser = require('body-parser');
 const logger = require('./middleware/logger');
 
 // declare local constants and helper functions
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 4600;
 const DATA_DIR = 'data';
 const TAG_RE = /#\w+/g;
 const slugToPath = (slug) => {
