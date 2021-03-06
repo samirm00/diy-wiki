@@ -114,7 +114,7 @@ app.get('/api/tags/all', async (req, res) => {
       }
     });
 
-    // find tag names in all files
+  
 
     res.json({ status: 'ok', tags: arrayOfTagNames });
   } catch (err) {
